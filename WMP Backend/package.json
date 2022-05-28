@@ -1,0 +1,8 @@
+{
+    "name": "wmp-backend",
+    "version": "1.0.0",
+    "author": "Daniel Ghebrat",
+    "dependencies": {
+        "serverless-python-requirements": "^5.4.0"
+    }
+}

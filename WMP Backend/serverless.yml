@@ -1,0 +1,60 @@
+service: 'wmp-backend'
+frameworkVersion: '3'
+provider:
+  name: aws
+  runtime: python3.9
+  stage: dev
+  region: eu-west-2
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - logs:CreateLogGroup
+        - logs:CreateLogStream
+        - logs:PutLogEvents
+        - lambda:*
+        - dynamodb:*
+        - s3:*
+        - ssm:*
+        - sns:*
+        - sqs:*
+        - cloudwatch:*
+        - iam:*
+        - ec2:*
+        - kms:*
+      Resource: '*'
+
+
+
+package:
+  patterns:
+    - '!node_modules/**'
+    - '!venv/**'
+    - '!.direnv/**'
+    - '!.mypy_cache/**'
+    - '!IPython/**'
+    - '!jedi/**'
+
+
+
+functions:
+  apiHandler:
+    name: 'wmp-backend-api'
+    handler: src.service.handler
+    runtime: python3.9
+    events:
+      - http:
+          path: '/'
+          method: GET
+          cors: false
+      - http:
+          path: '/{proxy+}'
+          method: ANY
+          cors: false
+
+custom:
+  pythonRequirements:
+    dockerizePip: non-linux
+
+
+plugins:
+  - serverless-python-requirements

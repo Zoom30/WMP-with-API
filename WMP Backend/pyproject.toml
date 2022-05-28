@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "wmp backend"
+version = "0.1.0"
+description = ""
+authors = ["Daniel Ghebrat <danielabraha99@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+SQLAlchemy = "^1.4.32"
+fastapi = "^0.75.0"
+boto3 = "^1.21.37"
+uvicorn = "^0.17.6"
+mangum = "^0.14.1"
+requests = "^2.27.1"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
